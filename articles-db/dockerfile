@@ -1,0 +1,4 @@
+FROM mysql
+ENV MYSQL_DATABASE articles_bdd
+ENV MYSQL_ROOT_PASSWORD example
+COPY init_article-bdd.sql /docker-entrypoint-initdb.d

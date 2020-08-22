@@ -1,0 +1,22 @@
+version: "3.3"
+
+services:
+  articles-bdd:
+    build: ./articles-db
+    image: articles-bdd-image
+    container_name: articles-bdd
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - 3306:3306
+    volumes:
+      - articles-bdd-data:/var/lib/mysql
+  adminer:
+      image: adminer
+      restart: always
+      ports:
+        - 8080:8080
+      depends_on:
+        - articles-bdd
+
+volumes:
+  articles-bdd-data:
